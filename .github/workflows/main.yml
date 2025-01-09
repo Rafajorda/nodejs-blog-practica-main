@@ -89,6 +89,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [linter_job, cypress_job, add_badge_job, deploy_job]
     steps:
+     - name: Checkout code
+        uses: actions/checkout@v3 
+        
       - name: Send notification email
         uses: ./actions/send-email
         with:
