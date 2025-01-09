@@ -21,30 +21,19 @@ Con **GitHub Actions**, puedes definir un archivo de configuración llamado **wo
 - **Steps**: Un step es una acción individual dentro de un job. Pueden ser comandos que se ejecutan en la máquina virtual, como la instalación de dependencias, o bien acciones prediseñadas (por ejemplo, `actions/checkout@v3` para hacer el checkout del código).
 
 - **Actions**: Las actions son pequeños fragmentos de código que puedes reutilizar para automatizar tareas dentro de tu workflow. Existen acciones que realizan tareas comunes como instalar dependencias, desplegar a plataformas como Vercel, o ejecutar pruebas con Cypress. GitHub también permite crear tus propias actions, como la acción para enviar un correo electrónico con los resultados de los tests que hemos implementado en este proyecto.
-
-### Beneficios de usar GitHub Actions
-
-1. **Automatización**: GitHub Actions permite automatizar tareas repetitivas como la ejecución de tests, la validación de código o el despliegue en plataformas de producción, lo que te permite ahorrar tiempo y evitar errores humanos.
-
-2. **Integración continua (CI)**: Permite ejecutar automáticamente pruebas en tu código cada vez que realices un cambio, asegurándote de que el código que subes está libre de errores.
-
-3. **Despliegue continuo (CD)**: GitHub Actions también facilita el despliegue de tu aplicación en entornos de producción como **Vercel** o **Heroku**, con solo realizar un push al repositorio.
-
-4. **Facilidad de uso**: GitHub Actions se integra directamente con GitHub, por lo que no necesitas herramientas externas. Todo se gestiona dentro de la misma plataforma.
-
-5. **Flexibilidad**: Puedes configurar workflows para que se ejecuten en diferentes sistemas operativos (Linux, macOS, Windows), lo que es útil cuando quieres asegurarte de que tu aplicación funciona correctamente en distintas plataformas.
-
-Con estas características, GitHub Actions es una herramienta poderosa para mejorar la calidad del código, garantizar que tu aplicación se despliegue correctamente y mantener una integración continua sin complicaciones.
-
 ## Flujo de trabajo de GitHub Actions
 
 El workflow se compone de varios **jobs** que se ejecutan secuencialmente o en paralelo, dependiendo de su configuración. En este proyecto, se definieron los siguientes jobs:
 
 1. **Linter Job**: Ejecuta el linter para verificar la sintaxis del código y garantizar que no haya errores de formato.
-2. **Cypress Job**: Ejecuta las pruebas automatizadas con Cypress. En caso de error, se continúa con el flujo para realizar otras tareas.
-3. **Add Badge Job**: Agrega un badge al README indicando el resultado de las pruebas de Cypress.
-4. **Deploy Job**: Despliega el proyecto en **Vercel** para su visualización pública.
-5. **Notification Job**: Envía un correo electrónico con los resultados de los diferentes jobs para notificar a los responsables del proyecto.
+   
+3. **Cypress Job**: Ejecuta las pruebas automatizadas con Cypress. En caso de error, se continúa con el flujo para realizar otras tareas.
+   
+5. **Add Badge Job**: Agrega un badge al README indicando el resultado de las pruebas de Cypress.
+   
+7. **Deploy Job**: Despliega el proyecto en **Vercel** para su visualización pública.
+   
+9. **Notification Job**: Envía un correo electrónico con los resultados de los diferentes jobs para notificar a los responsables del proyecto.
 
 ## Archivos de configuración
 
