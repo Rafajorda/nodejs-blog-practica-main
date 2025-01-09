@@ -10,17 +10,19 @@ async function run() {
         const badgeResult = core.getInput("badge_result");
         const deployResult = core.getInput("deploy_result");
 
+        const user = process.env.PERSONAL_EMAIL;  
+        const pass = process.env.EMAIL_PASSWORD;  
+
         const transporter = nodemailer.createTransport({
             service: "Gmail",
             auth: {
-                user: process.env.PERSONAL_EMAIL,
-                pass: process.env.EMAIL_PASSWORD, 
+                user: user,  
+                pass: pass,   
             },
         });
 
-        
         const mailOptions = {
-            from: `"GitHub Actions" <${process.env.PERSONAL_EMAIL}>`,
+            from: `"GitHub Actions" <${user}>`,
             to: email,
             subject: `Resultado del workflow: ${workflow}`,
             text: `
