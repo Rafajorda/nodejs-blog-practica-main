@@ -71,30 +71,30 @@ jobs:
         with:
           outcome: ${{ steps.generate_outcome.outputs.cypress_outcome }}
 
-  # deploy_job:
-  #   needs: cypress_job
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
+  deploy_job:
+    needs: cypress_job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-  #     - name: Deploy to Vercel
-  #       uses: amondnet/vercel-action@v20
-  #       with:
-  #         vercel-token: ${{ secrets.VERCEL_TOKEN }}
-  #         vercel-args: "--prod"
-  #         working-directory: ./
+      - name: Deploy to Vercel
+        uses: amondnet/vercel-action@v20
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-args: "--prod"
+          working-directory: ./
 
-  # notification_job:
-  #   runs-on: ubuntu-latest
-  #   needs: [linter_job, cypress_job, add_badge_job, deploy_job]
-  #   steps:
-  #     - name: Send notification email
-  #       uses: ./actions/send-email
-  #       with:
-  #         email: ${{ secrets.PERSONAL_EMAIL }}
-  #         workflow: nom_repositori_workflow
-  #         linter_result: ${{ jobs.linter_job.result }}
-  #         cypress_result: ${{ jobs.cypress_job.result }}
-  #         badge_result: ${{ jobs.add_badge_job.result }}
-  #         deploy_result: ${{ jobs.deploy_job.result }}
+  notification_job:
+    runs-on: ubuntu-latest
+    needs: [linter_job, cypress_job, add_badge_job, deploy_job]
+    steps:
+      - name: Send notification email
+        uses: ./actions/send-email
+        with:
+          email: ${{ secrets.PERSONAL_EMAIL }}
+          workflow: nom_repositori_workflow
+          linter_result: ${{ jobs.linter_job.result }}
+          cypress_result: ${{ jobs.cypress_job.result }}
+          badge_result: ${{ jobs.add_badge_job.result }}
+          deploy_result: ${{ jobs.deploy_job.result }}
