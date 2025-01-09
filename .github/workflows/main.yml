@@ -85,16 +85,16 @@ jobs:
           vercel-args: "--prod"
           working-directory: ./
 
-  notification_job:
-    runs-on: ubuntu-latest
-    needs: [linter_job, cypress_job, add_badge_job, deploy_job]
-    steps:
-      - name: Send notification email
-        uses: ./actions/send-email
-        with:
-          email: ${{ secrets.PERSONAL_EMAIL }}
-          workflow: nom_repositori_workflow
-          linter_result: ${{ jobs.linter_job.result }}
-          cypress_result: ${{ jobs.cypress_job.result }}
-          badge_result: ${{ jobs.add_badge_job.result }}
-          deploy_result: ${{ jobs.deploy_job.result }}
+  # notification_job:
+  #   runs-on: ubuntu-latest
+  #   needs: [linter_job, cypress_job, add_badge_job, deploy_job]
+  #   steps:
+  #     - name: Send notification email
+  #       uses: ./actions/send-email
+  #       with:
+  #         email: ${{ secrets.PERSONAL_EMAIL }}
+  #         workflow: nom_repositori_workflow
+  #         linter_result: ${{ jobs.linter_job.result }}
+  #         cypress_result: ${{ jobs.cypress_job.result }}
+  #         badge_result: ${{ jobs.add_badge_job.result }}
+  #         deploy_result: ${{ jobs.deploy_job.result }}
