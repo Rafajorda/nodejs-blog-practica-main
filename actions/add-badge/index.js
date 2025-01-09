@@ -21,9 +21,9 @@ fs.readFile(readmePath, 'utf8', (err, data) => {
     return;
   }
 
-  const regex =/RESULTADOS DE LOS ÚLTIMOS TESTS/;
+  const regex = /## RESULTADOS DE LOS ÚLTIMOS TESTS.*?\n/;
   if (regex.test(data)) {
-    const updatedData = data.replace(regex, `RESULTADOS DE LOS ÚLTIMOS TESTS\n\n${badgeText}`);
+    const updatedData = data.replace(regex, `## RESULTADOS DE LOS ÚLTIMOS TESTS\n\n${badgeText}\n`);
 
     fs.writeFile(readmePath, updatedData, 'utf8', (writeErr) => {
       if (writeErr) {
