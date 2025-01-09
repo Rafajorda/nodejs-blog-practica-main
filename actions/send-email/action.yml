@@ -1,0 +1,24 @@
+name: "Send Email Notification"
+description: "Envia un correo con el resultado"
+inputs:
+  email:
+    description: "Correu electrònic del destinatari"
+    required: true
+  workflow:
+    description: "nom_repositori_workflow"
+    required: true
+  linter_result:
+    description: "Resultado del linter"
+    required: true
+  cypress_result:
+    description: "Resultado de los tests de Cypress"
+    required: true
+  badge_result:
+    description: "Resultado del badge job"
+    required: true
+  deploy_result:
+    description: "Resultado del deploy"
+    required: true
+runs:
+  using: "node16"
+  main: "index.js"
