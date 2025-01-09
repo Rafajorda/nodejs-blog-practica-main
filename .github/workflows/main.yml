@@ -92,6 +92,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3 
 
+      - name: Install dependencies for send-email action
+        run: |
+          cd ./actions/send-email
+          npm install
+
       - name: Send notification email
         uses: ./actions/send-email
         with:
