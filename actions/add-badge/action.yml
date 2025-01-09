@@ -1,0 +1,11 @@
+name: "Add Badge"
+description: "This action adds a badge to the README based on the test result."
+
+inputs:
+  outcome:
+    description: "The outcome of the Cypress tests"
+    required: true
+
+runs:
+  using: "node12"
+  main: "index.js"
