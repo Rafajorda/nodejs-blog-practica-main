@@ -3,7 +3,7 @@ name: nom_repositori_workflow
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   linter_job:
