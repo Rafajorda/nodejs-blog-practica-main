@@ -61,6 +61,11 @@ jobs:
         id: generate_outcome
         run: echo "::set-output name=cypress_outcome::$(cat result.txt)"
 
+      - name: Install dependencies for add-badge action
+        run: |
+          cd actions/add-badge
+          npm install
+
       - name: Update README with badge
         uses: ./actions/add-badge
         with:

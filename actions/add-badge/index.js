@@ -23,7 +23,7 @@ fs.readFile(readmePath, 'utf8', (err, data) => {
 
   const regex =/RESULTADOS DE LOS ÚLTIMOS TESTS/;
   if (regex.test(data)) {
-    const updatedData = data.replace(regex, `RESULTAT DELS ÚLTIMS TESTS\n\n${badgeText}`);
+    const updatedData = data.replace(regex, `RESULTADOS DE LOS ÚLTIMOS TESTS\n\n${badgeText}`);
 
     fs.writeFile(readmePath, updatedData, 'utf8', (writeErr) => {
       if (writeErr) {
@@ -33,6 +33,6 @@ fs.readFile(readmePath, 'utf8', (err, data) => {
       }
     });
   } else {
-    core.setFailed('No se encontró la sección "RESULTAT DELS ÚLTIMS TESTS" en el README.md.');
+    core.setFailed('No se encontró la sección "RESULTADOS DE LOS ÚLTIMOS TESTS" en el README.md.');
   }
 });
