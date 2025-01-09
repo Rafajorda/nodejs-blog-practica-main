@@ -18,34 +18,34 @@ jobs:
       - name: Run linter
         run: npm run lint
 
-cypress_job:
-    needs: linter_job
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+  cypress_job:
+      needs: linter_job
+      runs-on: ubuntu-latest
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v3
 
-      - name: Install dependencies
-        run: npm install
+        - name: Install dependencies
+          run: npm install
 
-      - name: Run Cypress tests
-        uses: cypress-io/github-action@v5
-        with:
-          runTests: true
-          wait-on: "http://localhost:3000"
-          start: npm start
-        continue-on-error: true
+        - name: Run Cypress tests
+          uses: cypress-io/github-action@v5
+          with:
+            runTests: true
+            wait-on: "http://localhost:3000"
+            start: npm start
+          continue-on-error: true
 
-      - name: Save test results
-        run: echo ${{ steps.cypress.outputs.result }} > result.txt
+        - name: Save test results
+          run: echo ${{ steps.cypress.outputs.result }} > result.txt
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-results
-          path: result.txt
+        - name: Upload artifact
+          uses: actions/upload-artifact@v3
+          with:
+            name: test-results
+            path: result.txt
 
- add_badge_job:
+  add_badge_job:
     needs: cypress_job
     runs-on: ubuntu-latest
     steps:
